@@ -13,15 +13,22 @@
 */
 
 module.exports = class {
-    constructor(input, key) {
-        if (!input instanceof Buffer) {
-            throw new Error('Input must be a \'Buffer\' instance.')
-        }
-
+    constructor(key) {
         if (!(/^[\x00-\x7F]*$/.test(key))) {
             throw new Error('Key must be type \'Ascii\'')
         }
+        this.key = key
+    }
 
-        
+    encrypt(buffer) {
+        if (!buffer instanceof Buffer) {
+            throw new Error('buffer must be a \'Buffer\' instance.')
+        }
+    }
+
+    decrypt(input) {
+        if (typeof input === 'string' || input instanceof String) {
+            throw new Error('input must be type \'String\'.')
+        }
     }
 }
